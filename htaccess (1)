@@ -1,0 +1,11 @@
+# Enable the rewrite engine
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Short URL for wiki pages
+# RewriteRule %{DOCUMENT_ROOT}/index.php [L]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
+# Redirect / to Main Page
+# RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
